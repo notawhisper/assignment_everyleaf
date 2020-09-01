@@ -1,5 +1,7 @@
 h1 "タスク一覧"
 
+= link_to '新規登録', new_task_path
+
 table
   thead
     tr
@@ -10,3 +12,4 @@ table
       tr
         td= link_to task.title, task
         td= task.description
+        td= link_to '編集', edit_task_path(task)
