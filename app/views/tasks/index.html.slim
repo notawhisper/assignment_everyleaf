@@ -12,4 +12,6 @@ table
       tr
         td= link_to task.title, task
         td= task.description
-        td= link_to '編集', edit_task_path(task)
+        td
+          = link_to '編集', edit_task_path(task)
+          = link_to '削除', task, method: :delete, data: { confirm: "タスク#{task.title}を削除します。よろしいですか？" }
