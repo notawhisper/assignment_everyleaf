@@ -48,6 +48,7 @@ $ git commit -m "coment"
 ```
 
 4Heroku上にアプリを作成する
+
 ```$ heroku create```
 
 5Herokuにbuildpackを追加する
@@ -63,4 +64,5 @@ $ git push heroku ブランチ名:master
 ```
 
 7データベース移行
+
 ```$ heroku run rails db:migrate```
