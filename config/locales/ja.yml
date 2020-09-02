@@ -16,6 +16,10 @@ ja:
       show: 詳細
     confirm:
       delete: 削除してもよろしいですか？
+    notice:
+      create: 登録しました。
+      destroy: 削除しました。
+      update: 更新しました。
 
 
   date:

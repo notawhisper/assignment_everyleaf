@@ -7,7 +7,7 @@ table
     tr
       th= Task.human_attribute_name(:title)
       th= Task.human_attribute_name(:description)
-  tbody
+  tbody.task_row
     - @tasks.each do |task|
       tr
         td= link_to task.title, task
