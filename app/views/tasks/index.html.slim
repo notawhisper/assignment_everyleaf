@@ -7,11 +7,13 @@ table
     tr
       th= Task.human_attribute_name(:title)
       th= Task.human_attribute_name(:description)
+      th= Task.human_attribute_name(:created_at)
   tbody.task_row
     - @tasks.each do |task|
       tr
         td= link_to task.title, task
         td= task.description
+        td= task.created_at
         td
           = link_to t('view.links.edit'), edit_task_path(task)
           = link_to t('view.links.delete'), task, method: :delete, data: { confirm: t('view.confirm.delete') }
