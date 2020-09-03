@@ -1,6 +1,7 @@
 h1= t('view.links.index')
 
 = link_to t('view.links.new'), new_task_path
+= link_to '終了期限でソート', tasks_path(sort: 'deadline')
 
 table
   thead
@@ -8,6 +9,7 @@ table
       th= Task.human_attribute_name(:title)
       th= Task.human_attribute_name(:description)
       th= Task.human_attribute_name(:created_at)
+      th deadline
   tbody.task_row
     - @tasks.each do |task|
       tr
