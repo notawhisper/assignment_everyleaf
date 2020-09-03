@@ -1,17 +1,19 @@
-h1 "タスク一覧"
+h1= t('view.links.index')
 
-= link_to '新規登録', new_task_path
+= link_to t('view.links.new'), new_task_path
 
 table
   thead
     tr
-      th タイトル
-      th 詳細
-  tbody
+      th= Task.human_attribute_name(:title)
+      th= Task.human_attribute_name(:description)
+      th= Task.human_attribute_name(:created_at)
+  tbody.task_row
     - @tasks.each do |task|
       tr
         td= link_to task.title, task
         td= task.description
+        td= task.created_at
         td
-          = link_to '編集', edit_task_path(task)
-          = link_to '削除', task, method: :delete, data: { confirm: "タスク#{task.title}を削除します。よろしいですか？" }
+          = link_to t('view.links.edit'), edit_task_path(task)
+          = link_to t('view.links.delete'), task, method: :delete, data: { confirm: t('view.confirm.delete') }

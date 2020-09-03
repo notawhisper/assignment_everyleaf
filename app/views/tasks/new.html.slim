@@ -1,5 +1,5 @@
-h1 Tasks#new
+h1= t('view.links.new')
 
-= link_to '一覧', tasks_path
+= link_to t('view.links.index'), tasks_path
 
 = render partial: 'form', locals: {task: @task}
