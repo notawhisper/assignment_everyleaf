@@ -16,7 +16,7 @@ table
         td= link_to task.title, task
         td= task.description
         td= task.created_at
-        td= task.deadline
+        td.task_row_deadline= task.deadline
         td
           = link_to t('view.links.edit'), edit_task_path(task)
           = link_to t('view.links.delete'), task, method: :delete, data: { confirm: t('view.confirm.delete') }

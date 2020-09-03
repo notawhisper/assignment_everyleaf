@@ -13,8 +13,8 @@ RSpec.describe 'タスク管理機能', type: :system do
       it '作成したタスクが表示される' do
       fill_in Task.human_attribute_name(:title), with: 'しんきさくせい'
       fill_in Task.human_attribute_name(:description), with: 'aaa'
-      # binding.irb
-      fill_in 'Deadline', with: "002020010122222"
+      fill_in 'Deadline', with: DateTime.new(2000, 12, 31, 23, 55, 0)
+
       click_on '登録する'
       expect(page).to have_content 'しんきさくせい'
       end
@@ -34,6 +34,15 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit tasks_path
         task_list = all('.task_row')
         expect(task_list[0]).to have_content('タスク1')
+      end
+    end
+    context '終了期限でソートした場合' do
+      it '終了期限の降順に並び替えられたタスク一覧が表示される' do
+        visit tasks_path
+        click_on '終了期限でソート'
+        task_list = all('.task_row_deadline')
+        expect(task_list[0]).to have_content('2019')
+        expect(task_list[1]).to have_content('2018')
       end
     end
   end
