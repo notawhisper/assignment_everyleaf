@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2020_09_03_153055) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deadline", null: false
-    t.string "status"
+    t.string "status", default: "未着手"
   end
 
 end
