@@ -10,4 +10,6 @@
   = f.text_area :description
   = f.label :deadline
   = f.datetime_field :deadline, class: "yama"
+  = f.label :status
+  = f.select :status, ['未着手', '着手中', '完了']
   = f.submit
