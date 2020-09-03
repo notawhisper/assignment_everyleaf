@@ -14,7 +14,6 @@ RSpec.describe 'タスク管理機能', type: :system do
       fill_in Task.human_attribute_name(:title), with: 'しんきさくせい'
       fill_in Task.human_attribute_name(:description), with: 'aaa'
       fill_in 'Deadline', with: DateTime.new(2000, 12, 31, 23, 55, 0)
-
       click_on '登録する'
       expect(page).to have_content 'しんきさくせい'
       end
