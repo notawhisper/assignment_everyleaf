@@ -1,7 +1,23 @@
 class TasksController < ApplicationController
   before_action :set_task, only:[:show, :edit, :update, :destroy]
   def index
-    @tasks = Task.all.order(created_at: "DESC")
+    if params[:task].present?
+      if params[:task][:search_for_title].present? && params[:task][:search_for_status].present?
+        @tasks = Task.search_for_title(params[:task][:search_for_title]).search_for_status(params[:task][:search_for_status]).page(params[:page]).per(10)
+      elsif params[:task][:search_for_title].present?
+        @tasks = Task.search_for_title(params[:task][:search_for_title]).page(params[:page]).per(10)
+      elsif params[:task][:search_for_status].present?
+        @tasks = Task.search_for_status(params[:task][:search_for_status]).page(params[:page]).per(10)
+      end
+    else
+      @tasks = Task.all.order(created_at: 'DESC').page(params[:page]).per(10)
+    end
+
+    if params[:sort] == 'deadline'
+      @tasks = Task.all.order(deadline: 'DESC').page(params[:page]).per(10)
+    elsif params[:sort] == 'priority'
+      @tasks = Task.all.order(priority: 'DESC').page(params[:page]).per(10)
+    end
   end
 
   def show
@@ -42,6 +58,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :description)
+    params.require(:task).permit(:title, :description, :deadline, :status, :priority)
   end
 end
