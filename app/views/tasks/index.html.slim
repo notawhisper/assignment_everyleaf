@@ -12,6 +12,7 @@ table.table.table-hover
   thead.thead-default
     tr
       th= Task.human_attribute_name(:title)
+      th status
       th= Task.human_attribute_name(:description)
       th= Task.human_attribute_name(:created_at)
       th deadline
@@ -20,6 +21,7 @@ table.table.table-hover
     - @tasks.each do |task|
       tr
         td= link_to task.title, task
+        td= task.status
         td= task.description
         td= task.created_at
         td.task_row_deadline= task.deadline
