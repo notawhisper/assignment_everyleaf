@@ -15,6 +15,8 @@ class TasksController < ApplicationController
 
     if params[:sort] == 'deadline'
       @tasks = Task.all.order(deadline: 'DESC')
+    elsif params[:sort] == 'priority'
+      @tasks = Task.all.order(priority: 'DESC')
     end
   end
 

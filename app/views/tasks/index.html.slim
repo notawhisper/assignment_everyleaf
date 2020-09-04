@@ -7,6 +7,7 @@ h1= t('view.links.index')
 
 = link_to t('view.links.new'), new_task_path
 = link_to '終了期限でソート', tasks_path(sort: 'deadline')
+= link_to '優先度でソート', tasks_path(sort: 'priority')
 
 table
   thead
