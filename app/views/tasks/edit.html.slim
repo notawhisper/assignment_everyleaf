@@ -1,3 +1,6 @@
 h1 Tasks#edit
 
+.nav.justify-content-left
+  = link_to t('view.links.index'), tasks_path, class: 'btn btn-primary'
+
 = render partial: 'form', locals: {task: @task}
