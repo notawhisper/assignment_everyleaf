@@ -25,6 +25,9 @@ table
     tr
       th deadline
       td= @task.deadline
+    tr
+      th priority
+      td= @task.priority
 
 = link_to t('view.links.edit'), edit_task_path(@task)
 = link_to t('view.links.delete'), @task, method: :delete, data: { confirm: t('view.confirm.delete') }
