@@ -2,7 +2,7 @@ h1= t('view.links.index')
 
 = form_with model: Task.new, url: tasks_path, method: :get, local: true do |f|
   = f.text_field :search_for_title
-  / = f.select :search_for_status, ['未着手', '着手中', '完了'], { include_blank: 'ステータス' }
+  = f.select :search_for_status, ['未着手', '着手中', '完了'], { include_blank: 'ステータス' }
   = f.submit 'search'
 
 = link_to t('view.links.new'), new_task_path
