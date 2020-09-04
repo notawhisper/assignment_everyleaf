@@ -14,6 +14,7 @@ RSpec.describe 'タスク管理機能', type: :system do
       fill_in Task.human_attribute_name(:title), with: 'しんきさくせい'
       fill_in Task.human_attribute_name(:description), with: 'aaa'
       fill_in 'Deadline', with: DateTime.new(2000, 12, 31, 23, 55, 0)
+      select '着手中', from: 'Status'
       click_on '登録する'
       expect(page).to have_content 'しんきさくせい'
       end
@@ -46,13 +47,39 @@ RSpec.describe 'タスク管理機能', type: :system do
     end
   end
 
-  describe '詳細表示機能' do
-     context '任意のタスク詳細画面に遷移した場合' do
-       it '該当タスクの内容が表示される' do
-         task = FactoryBot.create(:task, title: 'task')
-         visit task_path(task)
-         expect(page).to have_content 'task'
-       end
-     end
+  describe '検索機能' do
+    before do
+      FactoryBot.create(:task, title: "task", status: '完了')
+      FactoryBot.create(:second_task, title: "sample", description: '表示されない', status: '未着手')
+      FactoryBot.create(:third_task, title: "sample", description: '表示される', status: '完了')
+    end
+    context 'タイトルであいまい検索をした場合' do
+      it "検索キーワードを含むタスクで絞り込まれる" do
+        visit tasks_path
+        # タスクの検索欄に検索ワードを入力する (例: task)
+        fill_in 'task_search_for_title', with: 'ta'
+        # 検索ボタンを押す
+        expect(page).to have_content 'task'
+      end
+    end
+    context 'ステータス検索をした場合' do
+      it "ステータスに完全一致するタスクが絞り込まれる" do
+        visit tasks_path
+        select '完了', from: 'task_search_for_status'
+        click_on 'search'
+        expect(page).to have_content 'task'
+        expect(page).not_to have_content '表示されない'
+      end
+    end
+    context 'タイトルのあいまい検索とステータス検索をした場合' do
+      it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスクが絞り込まれる" do
+        visit tasks_path
+        fill_in 'task_search_for_title', with: 'sam'
+        select '完了', from: 'task_search_for_status'
+        click_on 'search'
+        expect(page).to have_content '表示される'
+        expect(page).not_to have_content '表示されない'
+      end
+    end
   end
 end
