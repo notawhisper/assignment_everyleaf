@@ -67,3 +67,5 @@ gem 'html2slim'
 gem 'bootstrap'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
+
+gem 'faker'
