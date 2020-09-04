@@ -5,7 +5,7 @@ FactoryBot.define do
   factory :task do
     title { 'あいうえお' }
     description { 'Factoryで作ったデフォルトのコンテント１' }
-    deadline { '2018-09-02 00:00:00' }
+    deadline { '2018-09-01 00:00:00' }
     status { '未着手' }
     priority { '高' }
   end
@@ -22,7 +22,7 @@ FactoryBot.define do
   factory :third_task, class: Task do
     title { 'さしすせそ' }
     description { 'Factoryで作ったデフォルトのコンテント２' }
-    deadline { '2019-09-01 00:00:00' }
+    deadline { '2020-09-01 00:00:00' }
     status { '完了' }
     priority { '中' }
   end

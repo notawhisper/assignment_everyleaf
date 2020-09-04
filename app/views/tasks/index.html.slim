@@ -20,7 +20,7 @@ table.table.table-hover
   tbody.task_row
     - @tasks.each do |task|
       tr
-        td= link_to task.title, task
+        td.task_row_title= link_to task.title, task
         td= task.status
         td= task.description
         td= task.created_at
