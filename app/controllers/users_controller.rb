@@ -2,6 +2,9 @@ class UsersController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
 
   def new
+    if session[:user_id]
+      redirect_to user_url(id: session[:user_id])
+    end
     @user = User.new
   end
 
