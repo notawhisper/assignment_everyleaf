@@ -19,7 +19,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: current_user.id)
+    if params[:id].to_i == current_user.id
+      @user = User.find_by(id: current_user.id)
+    else
+      redirect_to tasks_url
+    end
   end
 
   private
