@@ -4,10 +4,8 @@ RSpec.describe 'ユーザー管理機能', type: :system do
   let!(:admin_user) { FactoryBot.create(:admin_user) }
   describe '一般ユーザー関連' do
     context 'ユーザーを登録した場合' do
-      before do
-        visit new_user_path
-      end
       it '作成したユーザーの詳細ページにいく' do
+        visit new_user_path
         fill_in User.human_attribute_name(:name), with: '新規作成'
         fill_in User.human_attribute_name(:email), with: 'newuser@test.com'
         fill_in User.human_attribute_name(:password), with: 'testtest'
@@ -20,7 +18,7 @@ RSpec.describe 'ユーザー管理機能', type: :system do
     context 'ログインせずにタスク一覧にアクセスしようとした場合' do
       it 'ログイン画面に遷移する' do
         visit tasks_path
-        expect(page).to have_content 'ログイン'
+        expect(current_path).to eq login_path
       end
     end
   end
@@ -51,6 +49,16 @@ RSpec.describe 'ユーザー管理機能', type: :system do
   end
 
   describe '管理機能' do
+    context '一般ユーザーとしてログインしている場合' do
+      it 'ユーザー管理画面にアクセスできない' do
+        visit login_path
+        fill_in 'session[email]', with: 'user1@test.com'
+        fill_in 'session[password]', with: 'testtest'
+        click_on 'ログインする'
+        visit admin_users_path
+        expect(current_path).to eq tasks_path
+      end
+    end
     context '管理ユーザーとしてログインしている場合' do
       before do
         visit login_path
