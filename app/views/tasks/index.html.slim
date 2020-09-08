@@ -4,7 +4,7 @@ h1= t('view.links.index')
   = f.select :search_for_status, ['未着手', '着手中', '完了'], { include_blank: 'ステータス' }, class: 'mr-3'
   = f.submit 'search'
 br
-= link_to '終了期限でソート', tasks_path(sort: 'deadline'), class: 'btn btn-primary mr-3'
+= link_to '達成期限でソート', tasks_path(sort: 'deadline'), class: 'btn btn-primary mr-3'
 = link_to '優先度でソート', tasks_path(sort: 'priority'), class: 'btn btn-primary'
 
 .mb-3
@@ -12,11 +12,11 @@ table.table.table-hover
   thead.thead-default
     tr
       th= Task.human_attribute_name(:title)
-      th status
+      th= Task.human_attribute_name(:status)
       th= Task.human_attribute_name(:description)
       th= Task.human_attribute_name(:created_at)
-      th deadline
-      th priority
+      th= Task.human_attribute_name(:deadline)
+      th= Task.human_attribute_name(:priority)
   tbody.task_row
     - @tasks.each do |task|
       tr

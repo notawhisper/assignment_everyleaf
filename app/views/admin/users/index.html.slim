@@ -4,12 +4,12 @@ h1 Admin::Users#index
 table.table.table-hover
   thead.thead-default
     tr
-      th name
-      th email
-      th admin
-      th task_counts
-      th created_at
-      th updated_at
+      th= User.human_attribute_name(:name)
+      th= User.human_attribute_name(:email)
+      th= User.human_attribute_name(:admin)
+      th= User.human_attribute_name(:task_counts)
+      th= User.human_attribute_name(:created_at)
+      th= User.human_attribute_name(:updated_at)
   tbody
     - @users.each do |user|
       tr

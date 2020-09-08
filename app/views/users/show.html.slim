@@ -3,8 +3,8 @@ h1 Users#show
 table.table.table-hover
   tbody
     tr
-      th 'ユーザーネーム'
+      th= User.human_attribute_name(:name)
       td= @user.name
     tr
-      th 'メールアドレス'
+      th= User.human_attribute_name(:email)
       td= @user.email

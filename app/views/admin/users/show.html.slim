@@ -2,21 +2,21 @@ h1 Admin::Users#show
 table.table.table-hover
   tbody
     tr
-      th 'ユーザーネーム'
+      th= User.human_attribute_name(:name)
       td= @user.name
     tr
-      th 'メールアドレス'
+      th= User.human_attribute_name(:email)
       td= @user.email
 
 table.table.table-hover
   thead.thead-default
     tr
       th= Task.human_attribute_name(:title)
-      th status
+      th= Task.human_attribute_name(:status)
       th= Task.human_attribute_name(:description)
       th= Task.human_attribute_name(:created_at)
-      th deadline
-      th priority
+      th= Task.human_attribute_name(:deadline)
+      th= Task.human_attribute_name(:priority)
   tbody.task_row
     - @tasks.each do |task|
       tr
