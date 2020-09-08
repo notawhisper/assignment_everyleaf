@@ -1,2 +1,9 @@
 h1 Admin::Users#show
-p Find me in app/views/admin/users/show.html.slim
+table.table.table-hover
+  tbody
+    tr
+      th 'ユーザーネーム'
+      td= @user.name
+    tr
+      th 'メールアドレス'
+      td= @user.email
