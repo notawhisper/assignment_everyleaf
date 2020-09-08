@@ -31,11 +31,12 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
+    @tasks = Task.where(user_id: @user.id)
   end
 
   def destroy
     @user.destroy
-    redirect_to login_url
+    redirect_to admin_users_url
   end
 
   private
