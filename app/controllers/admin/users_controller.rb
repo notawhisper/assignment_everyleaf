@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :show, :destroy]
+  before_action :admin_required
 
   def index
     @users = User.select(:id, :name, :email, :admin, :created_at, :updated_at)
@@ -46,5 +47,10 @@ class Admin::UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def admin_required
+    redirect_to tasks_url unless current_user.admin?
+    flash[:danger] = '管理者権限が必要です'
   end
 end
