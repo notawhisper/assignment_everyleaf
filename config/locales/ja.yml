@@ -20,6 +20,9 @@ ja:
       create: 登録しました。
       destroy: 削除しました。
       update: 更新しました。
+    session:
+      email: メールアドレス
+      password: パスワード
 
 
   date:
