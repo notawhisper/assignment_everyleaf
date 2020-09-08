@@ -17,6 +17,7 @@ table.table.table-hover
         td= user.email
         td= user.admin? ? '有' : '無'
         td= @tasks.where(user_id: user.id).count
+        / td= user.tasks.count
         td= user.created_at
         td= user.updated_at
         td

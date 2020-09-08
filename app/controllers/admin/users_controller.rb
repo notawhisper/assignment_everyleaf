@@ -4,7 +4,8 @@ class Admin::UsersController < ApplicationController
 
   def index
     @users = User.select(:id, :name, :email, :admin, :created_at, :updated_at)
-    @tasks = Task.includes(:user)
+    @tasks = Task.all.includes(:user)
+    # @users = User.includes(:tasks)
   end
 
   def new
