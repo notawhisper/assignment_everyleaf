@@ -3,9 +3,9 @@ class Admin::UsersController < ApplicationController
   before_action :admin_required
 
   def index
-    @users = User.select(:id, :name, :email, :admin, :created_at, :updated_at)
-    @tasks = Task.all.includes(:user)
-    # @users = User.includes(:tasks)
+    # @users = User.select(:id, :name, :email, :admin, :created_at, :updated_at)
+    # @tasks = Task.all.includes(:user)
+    @users = User.includes(:tasks)
   end
 
   def new
