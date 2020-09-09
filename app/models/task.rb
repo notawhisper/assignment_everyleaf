@@ -5,7 +5,7 @@ class Task < ApplicationRecord
 
   belongs_to :user
   has_many :labelings, dependent: :destroy
-  has_many :labels, through :labelings, source: :label
+  has_many :labels, through: :labelings, source: :label
 
   enum  priority: ["低", "中", "高"]
 
