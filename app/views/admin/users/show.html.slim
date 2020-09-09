@@ -1,13 +1,13 @@
-h1= t('view.links.index')
-= form_with model: Task.new, url: tasks_path, method: :get, local: true do |f|
-  = f.text_field :search_for_title, class: 'mr-3'
-  = f.select :search_for_status, ['未着手', '着手中', '完了'], { include_blank: 'ステータス' }, class: 'mr-3'
-  = f.submit 'search'
-br
-= link_to '達成期限でソート', tasks_path(sort: 'deadline'), class: 'btn btn-primary mr-3'
-= link_to '優先度でソート', tasks_path(sort: 'priority'), class: 'btn btn-primary'
+h1 Admin::Users#show
+table.table.table-hover
+  tbody
+    tr
+      th= User.human_attribute_name(:name)
+      td= @user.name
+    tr
+      th= User.human_attribute_name(:email)
+      td= @user.email
 
-.mb-3
 table.table.table-hover
   thead.thead-default
     tr
@@ -29,7 +29,3 @@ table.table.table-hover
         td
           = link_to t('view.links.edit'), edit_task_path(task)
           = link_to t('view.links.delete'), task, method: :delete, data: { confirm: t('view.confirm.delete') }
-
-= paginate @tasks
-
-= link_to t('view.links.new'), new_task_path, class: 'btn btn-primary'

@@ -3,6 +3,8 @@ class Task < ApplicationRecord
   validates :description, presence: true
   validates :deadline, presence: true
 
+  belongs_to :user
+
   enum  priority: ["低", "中", "高"]
 
   scope :search_for_title, ->(title_for_searching) { where('title LIKE ?', "%#{title_for_searching}%") }
