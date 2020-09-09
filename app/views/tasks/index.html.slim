@@ -2,6 +2,7 @@ h1= t('view.links.index')
 = form_with model: Task.new, url: tasks_path, method: :get, local: true do |f|
   = f.text_field :search_for_title, class: 'mr-3'
   = f.select :search_for_status, ['未着手', '着手中', '完了'], { include_blank: 'ステータス' }, class: 'mr-3'
+  = f.select :label_id, Label.pluck(:name, :id), { include_blank: true }
   = f.submit 'search'
 br
 = link_to '達成期限でソート', tasks_path(sort: 'deadline'), class: 'btn btn-primary mr-3'
@@ -18,7 +19,7 @@ table.table.table-hover
       th= Task.human_attribute_name(:deadline)
       th= Task.human_attribute_name(:priority)
   tbody.task_row
-    - @tasks.each do |task|
+    - @tasks&.each do |task|
       tr
         td.task_row_title= link_to task.title, task
         td= task.status
@@ -30,6 +31,6 @@ table.table.table-hover
           = link_to t('view.links.edit'), edit_task_path(task)
           = link_to t('view.links.delete'), task, method: :delete, data: { confirm: t('view.confirm.delete') }
 
-= paginate @tasks
+= paginate @tasks if @tasks.present?
 
 = link_to t('view.links.new'), new_task_path, class: 'btn btn-primary'
