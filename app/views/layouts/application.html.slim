@@ -13,8 +13,17 @@ html
 
     ul.navbar-nav.ml_auto
       - if current_user
-        li.nav-item= link_to 'タスク一覧', tasks_path, class:'nav-link'
-        li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class:'nav-link'
+        - if current_user.admin
+          li.nav-item= "管理者#{current_user.name}としてログイン中"
+          li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class:'nav-link'
+          li.nav-item= link_to 'タスク一覧', tasks_path, class:'nav-link'
+          li.nav-item= link_to 'ユーザー管理画面', admin_users_path, class:'nav-link'
+          li.nav-item= link_to 'ユーザー新規登録', new_admin_user_path, class:'nav-link'
+          li.nav-item= link_to 'ラベル一覧', admin_labels_path, class:'nav-link'
+        - else
+          li.nav-item= "一般ユーザー#{current_user.name}としてログイン中"
+          li.nav-item= link_to 'タスク一覧', tasks_path, class:'nav-link'
+          li.nav-item= link_to 'ログアウト', logout_path, method: :delete, class:'nav-link'
       - else
         li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
     .container

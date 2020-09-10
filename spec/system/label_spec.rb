@@ -106,7 +106,6 @@ RSpec.describe 'ラベル管理機能', type: :system do
           uncheck 'HisOrHerString'
           click_on '更新する'
           visit tasks_path
-          binding.irb
           select 'MyString', from: 'task[label_id]'
           click_on 'search'
           expect(page).to have_content('ラベル編集したよ')
