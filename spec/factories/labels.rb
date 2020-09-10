@@ -3,7 +3,7 @@ FactoryBot.define do
     name { "MyString" }
   end
 
-  factory :label2 do
+  factory :second_label, class: Label do
     name { "HisOrHerString" }
   end
 end
