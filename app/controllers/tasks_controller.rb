@@ -8,6 +8,9 @@ class TasksController < ApplicationController
         @tasks = current_user.tasks.search_for_title(params[:task][:search_for_title]).page(params[:page]).per(10)
       elsif params[:task][:search_for_status].present?
         @tasks = current_user.tasks.search_for_status(params[:task][:search_for_status]).page(params[:page]).per(10)
+      elsif params[:task][:label_id].present?
+        task_ids = Labeling.where(label_id: params[:task][:label_id]).pluck(:task_id)
+        @tasks = current_user.tasks.where(id: task_ids).page(params[:page]).per(10)
       end
     else
       @tasks = current_user.tasks.all.order(created_at: 'DESC').page(params[:page]).per(10)
