@@ -1,4 +1,4 @@
-= form_for @label do |f|
+= form_with model: [:admin, @label], local: true do |f|
   - if @label.errors.any?
     #error_explanation
       h2 = "#{pluralize(@label.errors.count, "error")} prohibited this label from being saved:"

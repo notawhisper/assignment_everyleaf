@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :labels
   namespace :admin do
     resources :users
+    resources :labels
   end
   root "tasks#index"
   resources :users, only: [:new, :create, :show]
@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   resources :tasks
+  # resources :labels
 end
