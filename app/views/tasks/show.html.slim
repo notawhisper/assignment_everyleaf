@@ -13,6 +13,10 @@ table.table.table-hover
       th= Task.human_attribute_name(:title)
       td= @task.title
     tr
+      th Labels
+      - @task.labels.each do |label|
+        td= label.name
+    tr
       th= Task.human_attribute_name(:status)
       td= @task.status
     tr
